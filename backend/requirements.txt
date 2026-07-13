@@ -26,3 +26,7 @@ python-multipart>=0.0.9
 jq>=1.6.0
 typer>=0.9.0
 emergentintegrations==0.2.0
+opencv-python-headless==5.0.0.93
+ultralytics==8.4.94
+pillow==12.3.0
+reportlab==5.0.0
