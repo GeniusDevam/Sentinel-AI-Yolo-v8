@@ -1,0 +1,145 @@
+{
+  "project_name": "Sentinel AI",
+  "app_type": "Enterprise SaaS Video Analytics Platform / Command Center",
+  "theme": "dark",
+  "typography": {
+    "headings": {
+      "fontFamily": "Outfit, sans-serif",
+      "strategy": "Wide, geometric, tactical. Represents precision and high-tech command center. Tracking tight (-0.02em).",
+      "sizes": {
+        "h1": "text-4xl sm:text-5xl",
+        "h2": "text-2xl sm:text-3xl",
+        "h3": "text-xl sm:text-2xl"
+      }
+    },
+    "body": {
+      "fontFamily": "Manrope, sans-serif",
+      "strategy": "Highly legible in dense data tables and logs."
+    },
+    "data_and_metrics": {
+      "fontFamily": "JetBrains Mono, monospace",
+      "strategy": "Mandatory for all live data: FPS, CPU usage, inference time, coordinates, time stamps."
+    },
+    "guidelines": "NEVER use Space Grotesk. Use Outfit for all headers. Always apply tracking-tight to H1/H2. Line height tight for headers, relaxed for body."
+  },
+  "colors": {
+    "archetype": "THE PERFORMANCE PRO (Command Center Variant)",
+    "background": {
+      "base": "#09090B",
+      "surface": "#18181B",
+      "surface_glass": "rgba(24, 24, 27, 0.6)"
+    },
+    "accent": {
+      "primary": "#2563EB",
+      "hover": "#3B82F6",
+      "glow": "rgba(37, 99, 235, 0.5)"
+    },
+    "alerts_and_status": {
+      "safe": "#10B981",
+      "warning": "#F59E0B",
+      "critical": "#EF4444",
+      "inactive": "#52525B"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A"
+    },
+    "borders": {
+      "subtle": "rgba(255, 255, 255, 0.1)",
+      "focus": "#2563EB"
+    },
+    "forbidden_colors": [
+      "#7351B7",
+      "#1B93A4"
+    ]
+  },
+  "visual_enhancers": {
+    "surfaces": {
+      "glassmorphism": "Use 'Crystal Glass' for Top Navigation and Sidebar. Class: `bg-zinc-950/60 backdrop-blur-xl border-b border-r border-white/10`. DO NOT use transparent backgrounds without blur.",
+      "neumorphism_tactical": "Use flat, technical surfaces for Dashboard Cards. Class: `bg-zinc-900 border border-white/5`. Do NOT use soft shadows; use 1px inner strokes.",
+      "grid_borders": "For the multi-camera grid view, expose the skeleton using `border-collapse` style gaps with `border border-white/10` to look technical and precise."
+    },
+    "overlays": "AI bounding boxes (person, car) on camera feeds must use vibrant 1px borders (Red/Green/Yellow) with a very faint transparent fill (e.g., `bg-red-500/20`)."
+  },
+  "grids_and_layouts": {
+    "strategy": "High Density Grid (Bento Mode B). Every pixel must be utilized. No jagged bottoms.",
+    "spacing": "Tight gaps (`gap-4` or `gap-6`) between cards. Internal padding for cards should be `p-4` to `p-6`.",
+    "structure": "Sidebar + Top Nav layout. Sidebar must have a solid or glass background. Main content area must have `min-h-screen bg-zinc-950 text-white p-6`.",
+    "dashboard_grid": "`grid-cols-1 md:grid-cols-3 lg:grid-cols-4`. Main camera feed spans `col-span-2 row-span-2` or `col-span-3`. Stats widgets span `col-span-1`."
+  },
+  "components": {
+    "buttons": "Pill-shaped or sharp rectangular. Interaction animations required. Primary buttons: `bg-blue-600 hover:bg-blue-500 text-white transition-colors duration-200`.",
+    "cards": "Borderless or subtle 1px border. `bg-zinc-900 rounded-lg border border-white/5 overflow-hidden`. Do not overuse heavy shadows.",
+    "forms_and_inputs": "Shadcn/UI inputs. Background `bg-zinc-950`, border `border-zinc-800`. Focus state: `focus:ring-2 focus:ring-blue-500 focus:border-transparent`.",
+    "canvas_drawable": "For 'restricted zones', implement an HTML5 Canvas over the video feed with custom crosshair cursor and drawing logic. Stroke color: Red.",
+    "charts": "Use Recharts. Ensure tooltips have dark backgrounds (`bg-zinc-900 border-zinc-800`). Use Accent Primary for primary metric lines, Warning/Critical for threshold indicators.",
+    "toasts": "Use `sonner` located in `/app/frontend/src/components/ui/sonner.jsx`. Dark theme standard.",
+    "icons": "Use `@phosphor-icons/react`. Sizing: 20px-24px for navigation, 16px for inline data."
+  },
+  "motion": {
+    "live_indicators": "Red recording/live dot must have a soft `animate-pulse` effect.",
+    "hover_states": "Cards should have slight lift (`-translate-y-[1px]`) and border color brightening (`hover:border-white/20`).",
+    "page_transitions": "Fade in on load. Staggered entrance for list items in Event Log (e.g., `animate-in fade-in slide-in-from-bottom-4`).",
+    "loading": "Skeleton loaders for camera feeds and charts. Class: `animate-pulse bg-zinc-800`."
+  },
+  "media_and_images": {
+    "strategy": "Use realistic enterprise camera feed placeholders. Never use empty placeholder text.",
+    "image_urls": {
+      "warehouse_cameras": [
+        {
+          "url": "https://images.pexels.com/photos/36122954/pexels-photo-36122954.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "description": "Camera 1: Warehouse Loading Dock"
+        },
+        {
+          "url": "https://images.pexels.com/photos/30341205/pexels-photo-30341205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "description": "Camera 2: Narrow Aisle Storage"
+        }
+      ],
+      "traffic_cameras": [
+        {
+          "url": "https://images.pexels.com/photos/8913522/pexels-photo-8913522.jpeg",
+          "description": "Camera 3: Intersection Alpha (Night)"
+        },
+        {
+          "url": "https://images.pexels.com/photos/31531448/pexels-photo-31531448.jpeg",
+          "description": "Camera 4: Roundabout West"
+        }
+      ],
+      "factory_cameras": [
+        {
+          "url": "https://images.pexels.com/photos/34718922/pexels-photo-34718922.jpeg",
+          "description": "Camera 5: Assembly Line A"
+        },
+        {
+          "url": "https://images.pexels.com/photos/34718930/pexels-photo-34718930.jpeg",
+          "description": "Camera 6: Factory Floor General"
+        }
+      ]
+    }
+  },
+  "accessibility": {
+    "contrast": "Text below 18px must be min 4.5:1. Use `#FFFFFF` for primary text, `#A1A1AA` for secondary. Avoid `#52525B` for anything other than disabled states.",
+    "focus": "All interactive elements MUST have visible focus rings (`focus:ring-2 focus:ring-blue-500`).",
+    "testing": "All interactive and key informational elements MUST include a `data-testid` attribute (e.g., `data-testid=\"live-feed-camera-1\"`)."
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Prioritize using .js (JavaScript) and .jsx extensions instead of .tsx for this project.",
+    "Do NOT center align the app container; do not use `.App { text-align: center; }`.",
+    "Install required dependencies: `yarn add @phosphor-icons/react recharts sonner`.",
+    "Use Shadcn UI components where applicable, customizing them to fit the 'Neumorphism Tactical' styling. Override default radii to be sharper (`rounded-md` instead of `rounded-xl`).",
+    "Use Tailwind CSS for styling exclusively. Avoid inline styles.",
+    "Never use generic placeholder image URLs (like via.placeholder.com). Use the provided image URLs in `media_and_images`.",
+    "Build empty states for lists/logs using dashed borders and muted icons to reflect the enterprise tactical feel.",
+    "Do not use universal transitions (`transition-all`). Target specific properties like `transition-colors`, `transition-opacity`.",
+    "DO NOT use a fully transparent background for the top navigation or sidebar dropdowns. Ensure they have `bg-zinc-900` or `bg-zinc-950/80 backdrop-blur-md`."
+  ],
+  "instructions_to_main_agent": {
+    "step_1": "Setup global CSS. Define base Tailwind config with Obsidian, Volt Blue, and Warning/Critical colors.",
+    "step_2": "Implement layout scaffolding: Glassmorphism Sidebar, Top Navigation with user profile, and Main content area.",
+    "step_3": "Build Dashboard view: Include Recharts for hourly detections, a large primary video feed component with bounding box overlays, and smaller grid feeds.",
+    "step_4": "Develop Live Monitoring & Canvas: Implement a canvas layer over a selected camera feed to allow the user to draw polygonal restricted zones.",
+    "step_5": "Create AI Settings Panel: Sliders for Confidence Threshold, IoU, and toggles for detection classes (Person, Car, etc).",
+    "step_6": "Populate with data and ensure all `data-testid` attributes are in place."
+  }
+}
