@@ -45,9 +45,24 @@ def create_refresh_token(user_id: str) -> str:
     return jwt.encode(payload, get_jwt_secret(), algorithm=JWT_ALGORITHM)
 
 
+def is_production() -> bool:
+    return os.environ.get("PRODUCTION", "false").lower() == "true"
+
+
+def _cookie_flags() -> dict:
+    """Cookie security flags. Secure=True in production (requires HTTPS)."""
+    return {
+        "httponly": True,
+        "secure": is_production(),
+        "samesite": "lax",
+        "path": "/",
+    }
+
+
 def set_auth_cookies(response, access: str, refresh: str):
-    response.set_cookie("access_token", access, httponly=True, secure=False, samesite="lax", max_age=43200, path="/")
-    response.set_cookie("refresh_token", refresh, httponly=True, secure=False, samesite="lax", max_age=604800, path="/")
+    flags = _cookie_flags()
+    response.set_cookie("access_token", access, max_age=43200, **flags)
+    response.set_cookie("refresh_token", refresh, max_age=604800, **flags)
 
 
 def clear_auth_cookies(response):

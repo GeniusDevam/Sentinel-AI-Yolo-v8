@@ -45,7 +45,7 @@ uvicorn server:app --host 0.0.0.0 --port 8001
 
 `backend/.env` needs `MONGO_URL`, `DB_NAME`, `JWT_SECRET` and the `ADMIN_EMAIL`/`ADMIN_PASSWORD`,
 `OPERATOR_EMAIL`/`OPERATOR_PASSWORD` and `VIEWER_EMAIL`/`VIEWER_PASSWORD` pairs.
-Optional: `YOLO_MODEL`.
+Optional: `CORS_ORIGINS`, `PRODUCTION`, `YOLO_MODEL`.
 
 Frontend (Node 18+ and Yarn):
 

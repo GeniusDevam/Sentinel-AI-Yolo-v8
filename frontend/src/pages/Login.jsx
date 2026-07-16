@@ -7,8 +7,8 @@ import { toast } from "sonner";
 export default function Login() {
   const { login } = useAuth();
   const nav = useNavigate();
-  const [email, setEmail] = useState("admin@sentinel.ai");
-  const [password, setPassword] = useState("Admin@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -34,6 +34,8 @@ export default function Login() {
     setEmail(map[role][0]);
     setPassword(map[role][1]);
   };
+
+  const demoMode = String(process.env.REACT_APP_DEMO_MODE || "true").toLowerCase() === "true";
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white flex" data-testid="login-page">
@@ -125,20 +127,28 @@ export default function Login() {
           </button>
 
           <div className="mt-8">
-            <div className="text-[10px] uppercase tracking-widest text-zinc-500 data-mono mb-2">Demo Accounts</div>
-            <div className="grid grid-cols-3 gap-2">
-              {["admin", "operator", "viewer"].map((r) => (
-                <button
-                  type="button"
-                  key={r}
-                  onClick={() => quick(r)}
-                  data-testid={`quick-login-${r}`}
-                  className="text-xs py-2 rounded-md bg-zinc-900 border border-zinc-800 hover:border-blue-500/50 hover:text-blue-400 transition-colors capitalize"
-                >
-                  {r}
-                </button>
-              ))}
-            </div>
+            {demoMode ? (
+              <>
+                <div className="text-[10px] uppercase tracking-widest text-zinc-500 data-mono mb-2">Demo Accounts</div>
+                <div className="grid grid-cols-3 gap-2">
+                  {["admin", "operator", "viewer"].map((r) => (
+                    <button
+                      type="button"
+                      key={r}
+                      onClick={() => quick(r)}
+                      data-testid={`quick-login-${r}`}
+                      className="text-xs py-2 rounded-md bg-zinc-900 border border-zinc-800 hover:border-blue-500/50 hover:text-blue-400 transition-colors capitalize"
+                    >
+                      {r}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-[10px] uppercase tracking-widest text-zinc-500 data-mono">
+                Access restricted · authorised personnel only
+              </div>
+            )}
           </div>
         </form>
       </div>
