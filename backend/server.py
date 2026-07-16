@@ -22,6 +22,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from auth_utils import (
     hash_password, verify_password, create_access_token, create_refresh_token,
     set_auth_cookies, clear_auth_cookies, sanitize_user, get_jwt_secret,
+    is_production, _cookie_flags,
     JWT_ALGORITHM,
 )
 import jwt as pyjwt
@@ -43,11 +44,26 @@ db = client[os.environ["DB_NAME"]]
 app = FastAPI(title="Sentinel AI", version="1.0.0")
 api = APIRouter(prefix="/api")
 
-# CORS
+# --- CORS ---
+# Read allowed origins from env. In PRODUCTION mode we refuse to use "*"
+# together with allow_credentials=True (browsers reject that anyway).
+_raw_origins = os.environ.get("CORS_ORIGINS", "*").strip()
+if _raw_origins == "*":
+    if is_production():
+        raise RuntimeError(
+            "CORS_ORIGINS='*' is not allowed when PRODUCTION=true. "
+            "Set CORS_ORIGINS to a comma-separated list of allowed origins."
+        )
+    _origins = ["*"]
+    _allow_credentials = False  # wildcard + credentials is invalid in browsers
+else:
+    _origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+    _allow_credentials = True
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_origins,
+    allow_credentials=_allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -147,7 +163,7 @@ async def refresh(request: Request, response: Response):
         if not user:
             raise HTTPException(status_code=401, detail="User not found")
         at = create_access_token(str(user["_id"]), user["email"], user["role"])
-        response.set_cookie("access_token", at, httponly=True, secure=False, samesite="lax", max_age=43200, path="/")
+        response.set_cookie("access_token", at, max_age=43200, **_cookie_flags())
         return {"ok": True}
     except pyjwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid refresh token")

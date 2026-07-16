@@ -86,7 +86,16 @@ frontend/node_modules/.cache/default-development/0.pack_
 .env
 .env.*
 *.env
+!.env.example
+!*.env.example
 credentials.json
 *.key
 .credentials
+
+# Sentinel AI - runtime artifacts
+backend/yolov8n.pt
+*.pt
+backend/uploads/
+backend/snapshots/
+test_reports/
 frontend/node_modules/.cache/default-development/0.pack
