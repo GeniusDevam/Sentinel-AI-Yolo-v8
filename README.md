@@ -57,3 +57,11 @@ yarn start
 ```
 
 The dashboard opens on http://localhost:3000 and calls the API under `/api`.
+
+## License
+
+Copyright (C) 2026 GeniusDevam.
+
+Sentinel AI is licensed under the [GNU Affero General Public License v3.0](LICENSE). You may use, modify and run it, including as a network service, as long as you publish your complete source code under the same license and keep the copyright notices. It uses [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics), which is also AGPL-3.0.
+
+To use Sentinel without the AGPL's source-sharing terms, for example in a closed commercial product, you need a commercial licence: open an issue titled "Commercial licence" in this repository or contact [@GeniusDevam](https://github.com/GeniusDevam) on GitHub. A commercial licence for YOLOv8 itself must be obtained from Ultralytics.
